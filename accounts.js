@@ -1,9 +1,17 @@
 import express from 'express';
 const router = express.Router();
 
-router.get('/login', (req,res) => {
+router.post('/login', (req,res) => {
+
+    //1
+    const fn = req.body.name;
+    const ln = req.body.lastname;
+
+    //2
+    const {name,lastname} = req.body;
+
     return res.status(200).json({
-        message: 'Hello from login route'
+        message: `Hello ${name} ${lastname}`
     })
 })
 
