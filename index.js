@@ -1,14 +1,12 @@
-const express = require('express');
-const bodyParser = require('body-parser');
+import express from 'express';
+import bodyParser from 'body-parser';
 const app = express();
 
 app.use(bodyParser.urlencoded());
 app.use(bodyParser.json());
 
-
-const accountRoute = require('./accounts');
+import accountRoute from './accounts.js';
 app.use('/accounts', accountRoute);
-
 
 const port = 3001;
 app.listen(port, function(){
