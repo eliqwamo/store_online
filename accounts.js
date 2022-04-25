@@ -6,16 +6,27 @@ const router = express.Router();
 let instruments = [];
 let students = [];
 
-router.post('/login', (req,res) => {
+router.post('/login', async(req,res) => {
 
-    const fn = req.body.name;
-    const ln = req.body.lastname;
+    const {email,password} = req.body;
+    const isStudent = students.find(x => x.email == email);
+    if(isStudent){
+        const isMatch = await tom.compare(password,isStudent.password);
+        if(isMatch){
+            return res.status(200).json({
+                message: `Hello ${isStudent.name}`
+            })
+        } else {
+            return res.status(200).json({
+                message: `Password not match`
+            })
+        }
 
-    //const {name,lastname} = req.body;
+    } else {
 
-    return res.status(200).json({
-        message: `Hello ${fn} ${ln}`
-    })
+    }
+
+    
 })
 
 
